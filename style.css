@@ -202,3 +202,53 @@ input[type="text"]:focus, textarea:focus { border-color: var(--accent-yellow); b
     .movie-controls { flex-direction: column; }
     .movie-controls input[type="text"], .movie-controls button { width: 100%; }
 }
+
+
+
+
+
+/* --- Under Construction Overlay --- */
+#construction-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(251, 249, 246, 0.85); /* Matches your var(--bg-color) but slightly see-through */
+    backdrop-filter: blur(8px); /* Blurs the website behind it */
+    z-index: 9999; /* Puts it on top of absolutely everything */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.construction-card {
+    background-color: #FFFFFF;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(116, 102, 75, 0.15);
+    border: 3px solid var(--accent-yellow);
+    text-align: center;
+    max-width: 90%;
+    width: 400px;
+    /* Animate it popping in */
+    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.construction-card h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.construction-card p {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
