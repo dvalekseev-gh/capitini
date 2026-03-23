@@ -1,51 +1,69 @@
-// Grab the elements from the webpage
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+// PASTE YOUR FIREBASE CONFIG HERE:
+const firebaseConfig = {
+  // apiKey: "...",
+  // authDomain: "...",
+  // ...
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
 const movieInput = document.getElementById('movieInput');
 const addMovieBtn = document.getElementById('addMovieBtn');
 const movieList = document.getElementById('movieList');
 const pickRandomBtn = document.getElementById('pickRandomBtn');
 const resultDisplay = document.getElementById('resultDisplay');
 
-// Load movies from local storage (or start with an empty array)
-let movies = JSON.parse(localStorage.getItem('dormMovies')) || [];
+let movies = []; 
 
-// Function to update the visual list on the screen
-function renderMovies() {
-    movieList.innerHTML = ''; // Clear current list
-    movies.forEach(movie => {
-        const li = document.createElement('li');
-        li.textContent = movie;
-        movieList.appendChild(li);
-    });
-}
-
-// If we are on the movies page, run this code
 if (addMovieBtn) {
-    // Show existing movies right away
-    renderMovies();
+    // Listen to Firebase
+    onSnapshot(collection(db, "movies"), (snapshot) => {
+        movies = []; 
+        movieList.innerHTML = ''; 
 
-    // Add a new movie
-    addMovieBtn.addEventListener('click', () => {
+        snapshot.forEach((doc) => {
+            const movieTitle = doc.data().title;
+            movies.push(movieTitle); 
+            
+            const li = document.createElement('li');
+            li.textContent = movieTitle;
+            movieList.appendChild(li);
+        });
+    });
+
+    // Add Movie
+    addMovieBtn.addEventListener('click', async () => {
         const title = movieInput.value.trim();
-        
         if (title !== "") {
-            movies.push(title); // Add to our list
-            localStorage.setItem('dormMovies', JSON.stringify(movies)); // Save to browser
-            movieInput.value = ''; // Clear the input box
-            renderMovies(); // Update the screen
+            await addDoc(collection(db, "movies"), { title: title });
+            movieInput.value = ''; 
         }
     });
 
-    // Pick a random movie
+    // Pick Random Movie
     pickRandomBtn.addEventListener('click', () => {
         if (movies.length === 0) {
-            resultDisplay.textContent = "The list is empty! Add some movies first.";
-            resultDisplay.style.color = "#e74c3c";
+            resultDisplay.textContent = "LIST IS EMPTY";
             return;
         }
         
-        // Math magic to pick a random item from the array
-        const randomIndex = Math.floor(Math.random() * movies.length);
-        resultDisplay.style.color = "#27ae60";
-        resultDisplay.textContent = `🎉 Tonight's movie is: ${movies[randomIndex]}!`;
+        // Add a cool little rolling effect
+        let counter = 0;
+        const rollInterval = setInterval(() => {
+            const randomTemp = Math.floor(Math.random() * movies.length);
+            resultDisplay.textContent = movies[randomTemp];
+            counter++;
+            
+            if (counter > 10) {
+                clearInterval(rollInterval);
+                const finalIndex = Math.floor(Math.random() * movies.length);
+                resultDisplay.textContent = `▶ ${movies[finalIndex]}`;
+                resultDisplay.style.color = 'var(--text-color)';
+            }
+        }, 50);
     });
 }
