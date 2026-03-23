@@ -3,31 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dorm Hub - Notice Board</title>
+    <title>CAPITINIHUB - Notices</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav>
-        <h1>🏠 Dorm Hub</h1>
-        <ul>
-            <li><a href="index.html" class="active">Notice Board</a></li>
-            <li><a href="movies.html">Movie Night</a></li>
-        </ul>
+        <div class="logo">
+            <span class="normal">CAPITINI</span><span class="bold">HUB</span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Notices</a>
+            <a href="movies.html">Movies</a>
+        </div>
     </nav>
 
     <main>
-        <h2>📢 Latest Notifications</h2>
-        <div class="notice-board">
-            <div class="card">
-                <h3>Kitchen Cleaning Duty</h3>
-                <p>Please remember to clean your dishes immediately after cooking! The schedule is posted on the fridge.</p>
-                <small>Posted on: Oct 24</small>
-            </div>
-            <div class="card">
-                <h3>Quiet Hours</h3>
-                <p>A quick reminder that quiet hours start at 10:00 PM on weekdays. Good luck with midterms!</p>
-                <small>Posted on: Oct 22</small>
-            </div>
+        <h1 class="page-title">Notice Board</h1>
+        
+        <div class="notice-list">
+            <article class="notice-item">
+                <div class="notice-date">OCT 24</div>
+                <div class="notice-content">
+                    <h2>Kitchen Cleaning Duty</h2>
+                    <p>Please remember to clean your dishes immediately after cooking. The schedule is posted on the fridge.</p>
+                </div>
+            </article>
+
+            <article class="notice-item">
+                <div class="notice-date">OCT 22</div>
+                <div class="notice-content">
+                    <h2>Quiet Hours</h2>
+                    <p>A quick reminder that quiet hours start at 10:00 PM on weekdays. Good luck with midterms!</p>
+                </div>
+            </article>
         </div>
     </main>
 </body>
