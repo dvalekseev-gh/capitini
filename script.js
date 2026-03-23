@@ -44,26 +44,40 @@ if (addMovieBtn) {
         }
     });
 
-    // Pick Random Movie
+    // Pick Random Movie (Refined Spinning Effect)
     pickRandomBtn.addEventListener('click', () => {
         if (movies.length === 0) {
-            resultDisplay.textContent = "LIST IS EMPTY";
+            resultDisplay.textContent = "THE LIST IS EMPTY!";
+            resultDisplay.style.color = 'rgba(116, 102, 75, 0.6)'; // Soft sepia for empty
             return;
         }
         
-        // Add a cool little rolling effect
-        let counter = 0;
-        const rollInterval = setInterval(() => {
-            const randomTemp = Math.floor(Math.random() * movies.length);
-            resultDisplay.textContent = movies[randomTemp];
-            counter++;
+        pickRandomBtn.disabled = true; // prevent multi-click
+        resultDisplay.textContent = "SPINNING...";
+        resultDisplay.style.color = 'var(--text-color)';
+
+        let count = 0;
+        const totalSpins = 12;
+        const initialSpeed = 80;
+        
+        function spin() {
+            const randomIndex = Math.floor(Math.random() * movies.length);
+            resultDisplay.textContent = movies[randomIndex];
             
-            if (counter > 10) {
-                clearInterval(rollInterval);
-                const finalIndex = Math.floor(Math.random() * movies.length);
-                resultDisplay.textContent = `▶ ${movies[finalIndex]}`;
+            count++;
+            if (count < totalSpins) {
+                // Add a small delay that increases to look like a spin slowing down
+                let speedDelay = initialSpeed + (count * 15);
+                setTimeout(spin, speedDelay);
+            } else {
+                // Land on the final choice
+                const finalChoiceIndex = Math.floor(Math.random() * movies.length);
+                resultDisplay.textContent = `▶ ${movies[finalChoiceIndex]} 🍿`;
                 resultDisplay.style.color = 'var(--text-color)';
+                pickRandomBtn.disabled = false;
             }
-        }, 50);
+        }
+        
+        setTimeout(spin, initialSpeed);
     });
 }
