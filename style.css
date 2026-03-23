@@ -207,48 +207,65 @@ input[type="text"]:focus, textarea:focus { border-color: var(--accent-yellow); b
 
 
 
-/* --- Under Construction Overlay --- */
-#construction-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(251, 249, 246, 0.85); /* Matches your var(--bg-color) but slightly see-through */
-    backdrop-filter: blur(8px); /* Blurs the website behind it */
-    z-index: 9999; /* Puts it on top of absolutely everything */
+/* --- About Page Styles --- */
+.mayors-section {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.mayors-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.mayors-grid {
     display: flex;
     justify-content: center;
-    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
 }
 
-.construction-card {
-    background-color: #FFFFFF;
-    padding: 3rem 2rem;
+.mayor-card {
+    background: #FFFFFF;
+    padding: 1.5rem;
     border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(116, 102, 75, 0.15);
-    border: 3px solid var(--accent-yellow);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+    border: 1px solid rgba(116, 102, 75, 0.05);
     text-align: center;
-    max-width: 90%;
-    width: 400px;
-    /* Animate it popping in */
-    animation: popIn 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    width: 200px;
 }
 
-.construction-card h2 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+.mayor-photo {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--accent-blue); /* Fallback color before image loads */
+    margin: 0 auto 1rem auto;
+    overflow: hidden;
+    border: 4px solid var(--accent-yellow);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.mayor-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Keeps the photo perfectly centered and cropped in the circle */
+}
+
+.mayor-card h3 {
+    font-size: 1.4rem;
     color: var(--text-color);
 }
 
-.construction-card p {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-color);
-    opacity: 0.8;
+.history-card {
+    padding: 2.5rem;
+    text-align: justify;
 }
 
-@keyframes popIn {
-    0% { transform: scale(0.8); opacity: 0; }
-    100% { transform: scale(1); opacity: 1; }
+.history-card p {
+    margin-bottom: 1.5rem;
+}
+
+.history-card p:last-child {
+    margin-bottom: 0;
 }
