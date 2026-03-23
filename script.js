@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ==========================================
-// 1. VIEW NOTICES LOGIC (Runs on index.html)
+// 1. VIEW NOTICES LOGIC
 // ==========================================
 const noticeList = document.getElementById('noticeList');
 
@@ -28,32 +28,37 @@ if (noticeList) {
         snapshot.forEach((doc) => {
             const notice = doc.data();
             
-            let dateString = "NEW";
+            // Format time accurately for Rome
+            let dateString = "Just now";
             if (notice.createdAt) {
                 const dateObj = notice.createdAt.toDate();
-                const month = dateObj.toLocaleString('default', { month: 'short' }).toUpperCase();
-                const day = dateObj.getDate();
-                dateString = `${month} ${day}`;
+                // Creates a format like: "24 Oct, 14:30" based on Rome time
+                dateString = dateObj.toLocaleString('en-GB', { 
+                    timeZone: 'Europe/Rome',
+                    day: 'numeric',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
             }
+
+            // Fallback for name if left blank
+            const authorName = notice.name || "Anonymous";
 
             const article = document.createElement('article');
             article.className = 'notice-card';
             
-            // Apply soft AC pastel colors to the cards
             const colors = ['#FEDB88', '#AED5E6', '#D4EED8', '#F9E3E4'];
-            const randomColor = colors[Math.floor(Math.random() * colors.length)];
-            article.style.backgroundColor = randomColor;
+            article.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
 
-            // This HTML exactly matches the CSS classes to keep the design beautiful
+            // The layout is now fully focused on the text and name (no smile icon)
             article.innerHTML = `
-                <div class="card-icon-area">
-                    <svg width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="#FBF9F6" fill-opacity="0.6"/><path d="M50 25C36.2 25 25 36.2 25 50C25 63.8 36.2 75 50 75C63.8 75 75 63.8 75 50" stroke="#74664B" stroke-width="5" stroke-linecap="round"/><circle cx="40" cy="45" r="5" fill="#74664B"/><circle cx="60" cy="45" r="5" fill="#74664B"/><path d="M45 60C45 60 48 65 55 60" stroke="#74664B" stroke-width="5" stroke-linecap="round"/></svg>
+                <div class="card-header-area">
+                    <span class="author-name">${authorName}</span>
+                    <span class="date">${dateString}</span>
                 </div>
-                <div class="card-content-area">
-                    <div class="date">${dateString}</div>
-                    <h2>${notice.title}</h2>
-                    <p class="dialogue-text">${notice.content}</p>
-                </div>
+                <h2>${notice.title}</h2>
+                <div class="dialogue-text">${notice.content}</div>
             `;
             noticeList.appendChild(article);
         });
@@ -61,32 +66,34 @@ if (noticeList) {
 }
 
 // ==========================================
-// 2. ADD NOTICE LOGIC (Runs on add-notice.html)
+// 2. ADD NOTICE LOGIC
 // ==========================================
 const addNoticeBtn = document.getElementById('addNoticeBtn');
+const postNameInput = document.getElementById('postNameInput');
 const noticeTitleInput = document.getElementById('noticeTitleInput');
 const noticeContentInput = document.getElementById('noticeContentInput');
 
 if (addNoticeBtn && noticeTitleInput) {
     addNoticeBtn.addEventListener('click', async () => {
+        const name = postNameInput.value.trim();
         const title = noticeTitleInput.value.trim();
         const content = noticeContentInput.value.trim();
         
         if (title !== "" && content !== "") {
             addNoticeBtn.textContent = "Posting...";
             await addDoc(collection(db, "notices"), { 
+                name: name,
                 title: title,
                 content: content,
                 createdAt: serverTimestamp() 
             });
-            // Send the user back to the main board after posting!
             window.location.href = "index.html"; 
         }
     });
 }
 
 // ==========================================
-// 3. MOVIE NIGHT LOGIC (Runs on movies.html)
+// 3. MOVIE NIGHT LOGIC
 // ==========================================
 const movieInput = document.getElementById('movieInput');
 const addMovieBtn = document.getElementById('addMovieBtn');
@@ -120,7 +127,8 @@ if (addMovieBtn && movieList) {
         if (movies.length === 0) return;
         
         pickRandomBtn.disabled = true; 
-        resultDisplay.textContent = "SPINNING...";
+        // Changed to sentence case!
+        resultDisplay.textContent = "Spinning...";
         
         let count = 0;
         function spin() {
