@@ -1,18 +1,3 @@
-// ==========================================
-// 🚨 UNDER CONSTRUCTION OVERLAY 🚨
-// ==========================================
-// This creates the un-closable wall and stops the user from scrolling
-const overlay = document.createElement('div');
-overlay.id = 'construction-overlay';
-overlay.innerHTML = `
-    <div class="construction-card">
-        <h2>Under construction</h2>
-        <p>capitinihub is getting set up for the semester. Please check back later!</p>
-    </div>
-`;
-document.body.appendChild(overlay);
-document.body.style.overflow = 'hidden'; // completely disables scrolling
-
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
