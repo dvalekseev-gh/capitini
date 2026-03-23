@@ -5,35 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAPITINIHUB - Notices</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav>
-        <div class="logo">
-            <span class="normal">CAPITINI</span><span class="bold">HUB</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html" class="active">Notices</a>
-            <a href="movies.html">Movies</a>
+        <div class="nav-content">
+            <div class="logo">
+                <span class="logo-text normal">CAPITINI</span><span class="logo-text bold">HUB</span>
+            </div>
+            <div class="nav-links">
+                <a href="index.html" class="active">Notices</a>
+                <a href="movies.html">Movies</a>
+            </div>
         </div>
     </nav>
 
-    <main>
-        <h1 class="page-title">Notice Board</h1>
+    <main class="notice-main">
+        <h1 class="page-title">Village Notices</h1>
         
         <div class="notice-list">
-            <article class="notice-item">
-                <div class="notice-date">OCT 24</div>
-                <div class="notice-content">
+            <article class="notice-card" style="background-color: #FEDB88;">
+                <div class="card-icon-area">
+                    <svg class="friendly-icon" width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="45" fill="#EAE0C7"/><rect x="25" y="40" width="50" height="40" rx="20" fill="#74664B"/><rect x="40" y="25" width="20" height="20" rx="10" fill="#74664B"/><circle cx="50" cy="50" r="10" fill="#FBF9F6"/><path d="M45 55L55 55L50 65Z" fill="#74664B"/></svg>
+                </div>
+                <div class="card-content-area">
+                    <div class="date">OCT 24</div>
                     <h2>Kitchen Cleaning Duty</h2>
-                    <p>Please remember to clean your dishes immediately after cooking. The schedule is posted on the fridge.</p>
+                    <p class="dialogue-text">Please remember to clean your dishes immediately after cooking. The schedule is posted on the fridge.</p>
                 </div>
             </article>
 
-            <article class="notice-item">
-                <div class="notice-date">OCT 22</div>
-                <div class="notice-content">
+            <article class="notice-card" style="background-color: #AED5E6;">
+                <div class="card-icon-area">
+                    <svg class="friendly-icon" width="60" height="60" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M70.5 44C70.5 59.1878 58.6878 71.5 44 71.5C29.3122 71.5 17.5 59.1878 17.5 44C17.5 28.8122 29.3122 16.5 44 16.5C45.2894 16.5 46.5647 16.634 47.8 16.8928C44.7556 22.7667 43 29.3562 43 36.5C43 47.018 47.9782 56.4022 55.7 62.4286C60.2037 66.0125 65.176 68.3976 70.5 69.4533V69.4533C71.3283 69.6195 72.1648 69.7497 73.0078 69.8427C72.1931 69.9463 71.3703 69.9989 70.5 69.9989C70.5 69.9989 70.5 69.9989 70.5 69.9989Z" stroke="#74664B" stroke-width="4" stroke-linecap="round"/><path d="M71 44C71 59.0228 58.9117 71.1111 44 71.1111C29.0883 71.1111 17 59.0228 17 44C17 28.9772 29.0883 16.8889 44 16.8889C45.281 16.8889 46.5492 17.0252 47.7778 17.2882C44.7262 23.2195 43 29.8395 43 37C43 47.5309 48.068 57 56 63.1481C60.5233 66.6975 65.556 69.1111 71 70.1852C71.8491 70.3601 72.709 70.4908 73.5762 70.579C72.715 70.6874 71.8415 70.7407 70.963 70.7407C70.963 70.7407 70.963 70.7407 70.963 70.7407Z" fill="#FBF9F6" stroke="#74664B" stroke-width="4" stroke-linecap="round"/></svg>
+                </div>
+                <div class="card-content-area">
+                    <div class="date">OCT 22</div>
                     <h2>Quiet Hours</h2>
-                    <p>A quick reminder that quiet hours start at 10:00 PM on weekdays. Good luck with midterms!</p>
+                    <p class="dialogue-text">A quick reminder that quiet hours start at 10:00 PM on weekdays. Good luck with midterms!</p>
                 </div>
             </article>
         </div>
