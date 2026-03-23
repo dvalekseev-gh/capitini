@@ -6,7 +6,7 @@ const overlay = document.createElement('div');
 overlay.id = 'construction-overlay';
 overlay.innerHTML = `
     <div class="construction-card">
-        <h2>🚧 Under construction 🚧</h2>
+        <h2>Under construction</h2>
         <p>capitinihub is getting set up for the semester. Please check back later!</p>
     </div>
 `;
