@@ -14,39 +14,33 @@
                 <span class="logo-text normal">CAPITINI</span><span class="logo-text bold">HUB</span>
             </div>
             <div class="nav-links">
-                <a href="index.html">Notices</a>
+                <a href="index.html">Posts</a>
                 <a href="movies.html" class="active">Movies</a>
+                <a href="add-notice.html" class="admin-link">+ Post</a>
             </div>
         </div>
     </nav>
 
     <main class="movie-main">
-        <h1 class="page-title">Community Movie Night</h1>
+        <h1 class="page-title">Movie proposals</h1>
         
         <div class="input-container-card">
             <div class="movie-controls">
-                <div class="popcorn-icon">
-                    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15 40V80C15 85.5228 19.4772 90 25 90H75C80.5228 90 85 85.5228 85 80V40H15Z" fill="#74664B"/><path d="M15 40L15 20H85V40L15 40Z" fill="#A08C75"/><circle cx="50" cy="20" r="10" fill="#FBF9F6"/></svg>
-                </div>
-                <input type="text" id="movieInput" placeholder="Propose your movie choice!" autocomplete="off">
-                <button id="addMovieBtn" class="pill-btn add-btn">Add to the List</button>
+                <input type="text" id="movieInput" placeholder="Propose a movie" autocomplete="off">
+                <button id="addMovieBtn" class="pill-btn add-btn">Add</button>
             </div>
         </div>
 
         <div class="movies-flow-layout">
             <div class="list-section-card">
-                <h3>Current Proposals:</h3>
+                <h3>Current proposals:</h3>
                 <ul id="movieList" class="village-list">
                     </ul>
             </div>
 
             <div class="picker-section-card">
-                <h3>Decide Tonight's Watch!</h3>
                 <div class="picker-container">
-                    <button id="pickRandomBtn" class="giant-pill-btn pick-btn">
-                        <span>ROLL THE DICE</span>
-                        <svg class="dice-icon" width="24" height="24" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="15" y="15" width="70" height="70" rx="15" fill="#FBF9F6" stroke="#74664B" stroke-width="8"/><circle cx="50" cy="50" r="8" fill="#74664B"/><circle cx="30" cy="30" r="8" fill="#74664B"/><circle cx="70" cy="70" r="8" fill="#74664B"/></svg>
-                    </button>
+                    <button id="pickRandomBtn" class="giant-pill-btn pick-btn">Roll the dice</button>
                     <div id="resultDisplay" class="result-display-area"></div>
                 </div>
             </div>
