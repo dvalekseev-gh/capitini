@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>capitini hubs - news</title>
+    <title>capitini hubs - map</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -11,10 +11,10 @@
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <span class="logo-text normal">capitini</span><span class="logo-text bold">space</span>
+                <span class="logo-text normal">capitini</span><span class="logo-text bold">hubs</span>
             </div>
             <div class="nav-links">
-                <a href="index.html" class="active">News</a>
+                <a href="index.html" class="active">Map</a>
                 <a href="about.html">About</a>
             </div>
         </div>
@@ -22,40 +22,81 @@
 
     <main>
         <header class="welcome-banner">
-            <h1 class="page-title">welcome to the cottage</h1>
-            <p class="subtitle">your daily dorm updates, announcements, and maintenance news</p>
+            <h1 class="page-title">interactive dorm map</h1>
+            <p class="subtitle">Click on any room or area to view details. Scroll horizontally on mobile.</p>
         </header>
         
-        <div class="card-stack">
+        <div class="map-section">
+            <div class="map-scroll-wrapper">
+                
+                <div class="css-map">
+                    
+                    <div class="map-cell room" onclick="openBubble('Apt. 1', 'Status: Occupied<br>Resident: Alice', 'room')">1</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 2', 'Status: Available', 'room')">2</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 3', 'Status: Occupied', 'room')">3</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 4', 'Status: Occupied', 'room')">4</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 5', 'Status: Available', 'room')">5</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 6', 'Status: Occupied', 'room')">6</div>
+                    
+                    <div class="map-cell corridor vertical clickable" onclick="openBubble('North Corridor', 'Hallway connecting rooms 1 through 12.', 'common')">Corridor</div>
+                    
+                    <div class="map-cell room" onclick="openBubble('Apt. 7', 'Status: Available', 'room')">7</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 8', 'Status: Occupied', 'room')">8</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 9', 'Status: Occupied', 'room')">9</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 10', 'Status: Available', 'room')">10</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 11', 'Status: Occupied', 'room')">11</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 12', 'Status: Occupied', 'room')">12</div>
 
-            <article class="notice-card important-notice">
-                <div class="card-header-area">
-                    <span class="notice-tag urgent-tag">URGENT</span>
-                    <span class="date">Mar 24</span>
-                </div>
-                <h2>[test] Fire Alarm Testing 🚨</h2>
-                <div class="dialogue-text">Please be aware that there will be a mandatory fire alarm test tomorrow morning at 10:00 AM. You do not need to evacuate the building when the alarm sounds, but please be prepared for loud noises.</div>
-            </article>
+                    <div class="map-cell facility portineria" onclick="openBubble('Portineria', 'Front desk, security, and main reception.', 'common')">Port.</div>
+                    
+                    <div class="map-cell corridor vertical clickable entrance-door" onclick="openBubble('Main Entrance', 'Welcome to Capitini Hubs! Please ensure the door closes behind you.', 'outdoor')">Entrance</div>
+                    
+                    <div class="map-cell facility conference" onclick="openBubble('Conference Room', 'Quiet study and meeting area.', 'common')">Conf.</div>
 
-            <article class="notice-card good-news-notice">
-                <div class="card-header-area">
-                    <span class="notice-tag positive-tag">GOOD NEWS</span>
-                    <span class="date">Mar 22</span>
-                </div>
-                <h2>[test] New Coffee Machine Installed! ☕</h2>
-                <div class="dialogue-text">Great news, everyone! The broken espresso machine in the common room has officially been replaced. It's ready to use starting today. Enjoy your caffeine!</div>
-            </article>
+                    <div class="map-cell main-hallway" style="grid-column: 1 / 17;">Main Hallway</div>
 
-            <article class="notice-card">
-                <div class="card-header-area">
-                    <span class="notice-tag standard-tag">UPDATE</span>
-                    <span class="date">Mar 20</span>
+                    <div class="map-cell room" onclick="openBubble('Apt. 13', 'Status: Occupied', 'room')">13</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 14', 'Status: Available', 'room')">14</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 15', 'Status: Occupied', 'room')">15</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 16', 'Status: Occupied', 'room')">16</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 17', 'Status: Available', 'room')">17</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 18', 'Status: Occupied', 'room')">18</div>
+                    
+                    <div class="map-cell corridor vertical clickable" onclick="openBubble('South Corridor', 'Hallway connecting rooms 13 through 24.', 'common')">Corridor</div>
+                    
+                    <div class="map-cell room" onclick="openBubble('Apt. 19', 'Status: Available', 'room')">19</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 20', 'Status: Occupied', 'room')">20</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 21', 'Status: Occupied', 'room')">21</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 22', 'Status: Available', 'room')">22</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 23', 'Status: Occupied', 'room')">23</div>
+                    <div class="map-cell room" onclick="openBubble('Apt. 24', 'Status: Occupied', 'room')">24</div>
+
+                    <div class="map-cell facility laundry" onclick="openBubble('Laundry', 'Washing machines and dryers. Open 24/7.', 'common')">Laundry</div>
+                    <div class="map-cell facility common-area" style="grid-column: 15 / 17;" onclick="openBubble('Common Area', 'Lounge and TV area for all residents.', 'common')">Common</div>
+
+                    <div class="map-cell outdoor garden" style="grid-column: 1 / 10;" onclick="openBubble('Garden', 'Outdoor relaxation area.', 'outdoor')">Garden</div>
+                    <div class="map-cell outdoor bike-area" style="grid-column: 10 / 14;" onclick="openBubble('Bike Area', 'Secure bicycle parking.', 'outdoor')">Bike Area</div>
+                    <div class="map-cell facility stairs" style="grid-column: 14 / 15;" onclick="openBubble('Stairs / Elevator', 'Access to other floors.', 'common')">Stairs</div>
+                    <div class="map-cell facility dispenser" style="grid-column: 15 / 16;" onclick="openBubble('Dispenser', 'Vending machines for snacks and drinks.', 'common')">Disp.</div>
+                    <div class="map-cell facility kitchen" style="grid-column: 16 / 17;" onclick="openBubble('Kitchen', 'Communal cooking area. Please clean up after use!', 'common')">Kitchen</div>
                 </div>
-                <h2>[test] Water Maintenance 🚿</h2>
-                <div class="dialogue-text">Heads up! There will be no hot water tomorrow morning between 9:00 AM and 12:00 PM due to scheduled maintenance. Plan accordingly!</div>
-            </article>
+            </div>
+
+            <div id="bubble-overlay" onclick="closeBubble()"></div>
+            <div id="info-bubble" class="bubble-card">
+                <button class="close-btn" onclick="closeBubble()">×</button>
+                <div class="bubble-header-area">
+                    <span id="bubble-tag" class="notice-tag">ROOM</span>
+                </div>
+                <h2 id="bubble-title">Room Name</h2>
+                <div class="dialogue-text" id="bubble-desc">
+                    Room description goes here.
+                </div>
+            </div>
 
         </div>
     </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
