@@ -2,14 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebas
 import { getFirestore, collection, addDoc, onSnapshot, query, orderBy, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
 
 // PASTE YOUR FIREBASE CONFIG HERE:
-const firebaseConfig = {
-  apiKey: "AIzaSyBivILhcP8I2XjKPCc-QbDNs9sLVZgrcls",
-  authDomain: "capitini-5dfff.firebaseapp.com",
-  projectId: "capitini-5dfff",
-  storageBucket: "capitini-5dfff.firebasestorage.app",
-  messagingSenderId: "413960521320",
-  appId: "1:413960521320:web:db56bc73fc090e7aa09ddd"
-};
+const firebaseConfig = process.env.KEY1;
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
