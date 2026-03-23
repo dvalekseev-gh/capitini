@@ -15,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // ==========================================
-// 1. VIEW NOTICES LOGIC
+// 1. VIEW POSTS LOGIC (index.html)
 // ==========================================
 const noticeList = document.getElementById('noticeList');
 
@@ -28,11 +28,9 @@ if (noticeList) {
         snapshot.forEach((doc) => {
             const notice = doc.data();
             
-            // Format time accurately for Rome
             let dateString = "Just now";
             if (notice.createdAt) {
                 const dateObj = notice.createdAt.toDate();
-                // Creates a format like: "24 Oct, 14:30" based on Rome time
                 dateString = dateObj.toLocaleString('en-GB', { 
                     timeZone: 'Europe/Rome',
                     day: 'numeric',
@@ -42,16 +40,11 @@ if (noticeList) {
                 });
             }
 
-            // Fallback for name if left blank
             const authorName = notice.name || "Anonymous";
 
             const article = document.createElement('article');
             article.className = 'notice-card';
             
-            const colors = ['#FEDB88', '#AED5E6', '#D4EED8', '#F9E3E4'];
-            article.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-
-            // The layout is now fully focused on the text and name (no smile icon)
             article.innerHTML = `
                 <div class="card-header-area">
                     <span class="author-name">${authorName}</span>
@@ -66,7 +59,7 @@ if (noticeList) {
 }
 
 // ==========================================
-// 2. ADD NOTICE LOGIC
+// 2. ADD POST LOGIC (add-notice.html)
 // ==========================================
 const addNoticeBtn = document.getElementById('addNoticeBtn');
 const postNameInput = document.getElementById('postNameInput');
@@ -93,9 +86,10 @@ if (addNoticeBtn && noticeTitleInput) {
 }
 
 // ==========================================
-// 3. MOVIE NIGHT LOGIC
+// 3. MOVIE PROPOSALS LOGIC (movies.html)
 // ==========================================
 const movieInput = document.getElementById('movieInput');
+const movieProposerInput = document.getElementById('movieProposerInput');
 const addMovieBtn = document.getElementById('addMovieBtn');
 const movieList = document.getElementById('movieList');
 const pickRandomBtn = document.getElementById('pickRandomBtn');
@@ -103,22 +97,33 @@ const resultDisplay = document.getElementById('resultDisplay');
 
 if (addMovieBtn && movieList) {
     let movies = []; 
+    
     onSnapshot(collection(db, "movies"), (snapshot) => {
         movies = []; 
         movieList.innerHTML = ''; 
+        
         snapshot.forEach((doc) => {
-            const movieTitle = doc.data().title;
-            movies.push(movieTitle); 
+            const data = doc.data();
+            const movieTitle = data.title;
+            const proposer = data.proposer || "Anonymous"; 
+            
+            movies.push({ title: movieTitle, proposer: proposer }); 
+            
             const li = document.createElement('li');
-            li.textContent = movieTitle;
+            li.innerHTML = `<strong>${movieTitle}</strong> <span style="opacity: 0.6; font-size: 0.9em;">(by ${proposer})</span>`;
             movieList.appendChild(li);
         });
     });
 
     addMovieBtn.addEventListener('click', async () => {
         const title = movieInput.value.trim();
+        const proposer = movieProposerInput.value.trim();
+        
         if (title !== "") {
-            await addDoc(collection(db, "movies"), { title: title });
+            await addDoc(collection(db, "movies"), { 
+                title: title,
+                proposer: proposer 
+            });
             movieInput.value = ''; 
         }
     });
@@ -127,17 +132,18 @@ if (addMovieBtn && movieList) {
         if (movies.length === 0) return;
         
         pickRandomBtn.disabled = true; 
-        // Changed to sentence case!
         resultDisplay.textContent = "Spinning...";
         
         let count = 0;
         function spin() {
-            resultDisplay.textContent = movies[Math.floor(Math.random() * movies.length)];
+            const randomMovie = movies[Math.floor(Math.random() * movies.length)];
+            resultDisplay.textContent = randomMovie.title; 
+            
             count++;
             if (count < 12) {
                 setTimeout(spin, 80 + (count * 15));
             } else {
-                resultDisplay.textContent = `▶ ${movies[Math.floor(Math.random() * movies.length)]} 🍿`;
+                resultDisplay.innerHTML = `▶ ${randomMovie.title} 🍿 <br><span style="font-size: 0.6em; opacity: 0.7;">Proposed by: ${randomMovie.proposer}</span>`;
                 pickRandomBtn.disabled = false;
             }
         }
