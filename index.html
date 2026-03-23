@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAPITINIHUB - Posts</title>
+    <title>capitini hubs - news</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
 </head>
@@ -11,25 +11,51 @@
     <nav>
         <div class="nav-content">
             <div class="logo">
-                <span class="logo-text normal">capitini</span><span class="logo-text bold">hub</span><span class="logo-text normal">1.0</span>
+                <span class="logo-text normal">capitini</span><span class="logo-text bold">hubs</span>
             </div>
             <div class="nav-links">
-    <a href="index.html">Posts</a>
-    <a href="movies.html">Movies</a>
-    <a href="about.html">About</a>
-    <a href="add-notice.html" class="admin-link">+ Post</a>
-</div>
+                <a href="index.html" class="active">News</a>
+                <a href="about.html">About</a>
+            </div>
         </div>
     </nav>
 
-    <main class="notice-main">
-        <h1 class="page-title">What is in my mind today</h1>
+    <main>
+        <header class="welcome-banner">
+            <h1 class="page-title">welcome to the cottage</h1>
+            <p class="subtitle">your daily dorm updates, announcements, and maintenance news</p>
+        </header>
         
-        <div class="notice-list" id="noticeList">
-            <div style="text-align: center; color: #74664B; padding: 2rem;">Loading posts...</div>
+        <div class="card-stack">
+
+            <article class="notice-card important-notice">
+                <div class="card-header-area">
+                    <span class="notice-tag urgent-tag">URGENT</span>
+                    <span class="date">Mar 24</span>
+                </div>
+                <h2>[test] Fire Alarm Testing 🚨</h2>
+                <div class="dialogue-text">Please be aware that there will be a mandatory fire alarm test tomorrow morning at 10:00 AM. You do not need to evacuate the building when the alarm sounds, but please be prepared for loud noises.</div>
+            </article>
+
+            <article class="notice-card good-news-notice">
+                <div class="card-header-area">
+                    <span class="notice-tag positive-tag">GOOD NEWS</span>
+                    <span class="date">Mar 22</span>
+                </div>
+                <h2>[test] New Coffee Machine Installed! ☕</h2>
+                <div class="dialogue-text">Great news, everyone! The broken espresso machine in the common room has officially been replaced. It's ready to use starting today. Enjoy your caffeine!</div>
+            </article>
+
+            <article class="notice-card">
+                <div class="card-header-area">
+                    <span class="notice-tag standard-tag">UPDATE</span>
+                    <span class="date">Mar 20</span>
+                </div>
+                <h2>[test] Water Maintenance 🚿</h2>
+                <div class="dialogue-text">Heads up! There will be no hot water tomorrow morning between 9:00 AM and 12:00 PM due to scheduled maintenance. Plan accordingly!</div>
+            </article>
+
         </div>
     </main>
-
-    <script type="module" src="script.js"></script>
 </body>
 </html>
